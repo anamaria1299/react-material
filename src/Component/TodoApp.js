@@ -29,19 +29,7 @@ export class TodoApp extends Component {
     render() {
         return (
             <div className="TodoApp" >
-                <header>
-                    <AppBar position="static">
-                        <Toolbar>
-                            <IconButton edge="start" color="inherit" aria-label="menu">
-                                <img src={logo} width="20%" height="40%"/>
-                            </IconButton>
-                            <Typography variant="h6" >
-                                TODO App
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
-                </header>
-                <br/><br/>
+                <br/>
                 <Card className="todo-form">
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>

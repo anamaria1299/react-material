@@ -1,8 +1,6 @@
-import Typography from '@material-ui/core/Typography'
 import {Todo} from './Todo'
 import React from 'react'
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 
 export class TodoList extends React.Component {
 
