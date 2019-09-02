@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import DatePicker from 'react-datepicker'
 import React, {Component} from 'react'
-import {TodoList} from "../TodoList"
+import {TodoList} from "./TodoList"
 import moment from "moment"
 import '../App.css'
 
@@ -47,8 +47,8 @@ export class TodoApp extends Component {
                         <Typography color="textSecondary" gutterBottom>
                             Create a New TODO
                         </Typography>
-                        <Grid container spacing={1}>
-                            <Grid item xs={4}>
+                        <Grid container spacing={0}>
+                            <Grid item xs={12}>
                                 <TextField
                                     id="text"
                                     label="Text"
@@ -58,18 +58,18 @@ export class TodoApp extends Component {
                                     variant="outlined"
                                 />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={12}>
                                 <TextField
                                     id="priority"
                                     type="number"
                                     onChange={this.handlePriorityChange}
                                     value={this.state.priority}
-                                    label="Text"
+                                    label="Priority"
                                     margin="normal"
                                     variant="outlined"
                                 />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={12}>
                                 <DatePicker
                                     id="due-date"
                                     selected={this.state.dueDate}
@@ -80,7 +80,11 @@ export class TodoApp extends Component {
                         </Grid>
                     </CardContent>
                     <CardActions>
-                        <Button size="small" onClick={this.handleSubmit}>Add #{this.state.items.length + 1}</Button>
+                        <Button size="small" onClick={this.handleSubmit}>
+                            <Typography color="textSecondary" gutterBottom>
+                                Add
+                            </Typography>
+                        </Button>
                     </CardActions>
                 </Card>
                 <br/><br/>
