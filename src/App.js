@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css'
 import {TodoApp} from "./Component/TodoApp"
 import 'react-datepicker/dist/react-datepicker.css'
@@ -16,10 +16,9 @@ class App extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {isLoggedIn: false}
     }
 
-    render() {
+    makeView(isLoggedIn) {
 
         const LoginView = () => (
             <Login />
@@ -27,20 +26,38 @@ class App extends Component {
 
         const TodoView = () => {
 
-            if(this.state.isLoggedIn) {
+            if(!isLoggedIn) {
+
+                return (
+                    <div>
+                        <br/>
+                        Whatever you were looking here is not allowed, because you need to logged in first
+                    </div>
+                )
+            } else {
                 return (
                     <div>
                         <TodoApp/>
                     </div>
                 )
             }
-            return (
-                <div>
-
-                    Whatever you were looking here is not allowed
-                </div>
-            )
         }
+
+        return (
+            <div>
+                <Route exact path="/" component={LoginView}/>
+                <Route path="/todo" component={TodoView}/>
+            </div>
+        )
+    }
+
+    render() {
+
+        if (localStorage.getItem('isLoggedInA') === undefined) {
+            localStorage.setItem('isLoggedInA', false)
+        }
+
+        const isLoggedIn = localStorage.getItem('isLoggedInA')
 
         return (
             <Router>
@@ -65,11 +82,7 @@ class App extends Component {
                             <Tab label="Todo" href="/todo" />
                         </Tabs>
                     </AppBar>
-
-                    <div>
-                        <Route exact path="/" component={LoginView}/>
-                        <Route path="/todo" component={TodoView}/>
-                    </div>
+                    {this.makeView(isLoggedIn)}
                 </div>
             </Router>
         );

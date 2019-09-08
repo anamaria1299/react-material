@@ -13,7 +13,19 @@ import './Login.css'
 
 export class Login extends React.Component{
 
+    submit(){
+        const email = document.getElementById('email').value
+        const password = document.getElementById('password').value
+        if(email!=='' && password!=='') {
+            localStorage.setItem('isLoggedInA', true)
+            localStorage.setItem('email', email)
+            localStorage.setItem('password', password)
+        }
+    }
+
     render(){
+
+
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -43,6 +55,7 @@ export class Login extends React.Component{
                                 variant="raised"
                                 color="primary"
                                 className="submit"
+                                onClick = {this.submit}
                             >
                                 Sign in
                             </Button>
